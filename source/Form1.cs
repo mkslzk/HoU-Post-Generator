@@ -206,7 +206,6 @@ namespace PostGenerator
                 MessageBox.Show("All done");
             }
         }
-
         private void nextNZB_Click(object sender, EventArgs e)
         {
             if (NewNZBs.SelectedIndex != -1)
@@ -289,6 +288,40 @@ namespace PostGenerator
             }
 
             return "";
+        }
+
+        private void TitleToClipboard_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(gameTitle.Text);
+        }
+
+        private void ImgurLinkToClipboard_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(imgurLink.Text);
+        }
+
+        private void generatedPostToClipboard_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(generatedPost.Text);
+        }
+
+        private void nextNZBwithnewNFO_Click(object sender, EventArgs e)
+        {
+            if (NewNZBs.SelectedIndex != -1)
+            {
+                string targetPath = dirName + @"\posted";
+                string sourceFile = Path.Combine(dirName, chosenNZB);
+                string destFile = Path.Combine(targetPath, chosenNZB);
+                NewNZBs.Items.RemoveAt(NewNZBs.SelectedIndex);
+                if (!Directory.Exists(targetPath))
+                {
+                    Directory.CreateDirectory(targetPath);
+                }
+                File.Move(sourceFile, destFile);
+                gameTitle.Text = "";
+                NFOText.Text = "";
+                generatedPost.Text = "";
+            }
         }
         public Game GetGameData(int GameId)
         {
@@ -434,40 +467,6 @@ namespace PostGenerator
             public int id { get; set; }
             public string path_thumbnail { get; set; }
             public string path_full { get; set; }
-        }
-
-        private void TitleToClipboard_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetText(gameTitle.Text);
-        }
-
-        private void ImgurLinkToClipboard_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetText(imgurLink.Text);
-        }
-
-        private void generatedPostToClipboard_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetText(generatedPost.Text);
-        }
-
-        private void nextNZBwithnewNFO_Click(object sender, EventArgs e)
-        {
-            if (NewNZBs.SelectedIndex != -1)
-            {
-                string targetPath = dirName + @"\posted";
-                string sourceFile = Path.Combine(dirName, chosenNZB);
-                string destFile = Path.Combine(targetPath, chosenNZB);
-                NewNZBs.Items.RemoveAt(NewNZBs.SelectedIndex);
-                if (!Directory.Exists(targetPath))
-                {
-                    Directory.CreateDirectory(targetPath);
-                }
-                File.Move(sourceFile, destFile);
-                gameTitle.Text = "";
-                NFOText.Text = "";
-                generatedPost.Text = "";
-            }
         }
     }
 }
