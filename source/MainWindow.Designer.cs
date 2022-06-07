@@ -188,7 +188,7 @@ namespace PostGenerator
             // 
             // nextNZB
             // 
-            this.nextNZB.Location = new System.Drawing.Point(584, 917);
+            this.nextNZB.Location = new System.Drawing.Point(584, 920);
             this.nextNZB.Name = "nextNZB";
             this.nextNZB.Size = new System.Drawing.Size(97, 35);
             this.nextNZB.TabIndex = 20;
@@ -257,7 +257,7 @@ namespace PostGenerator
             // 
             // generatePost
             // 
-            this.generatePost.Location = new System.Drawing.Point(584, 754);
+            this.generatePost.Location = new System.Drawing.Point(584, 757);
             this.generatePost.Name = "generatePost";
             this.generatePost.Size = new System.Drawing.Size(200, 35);
             this.generatePost.TabIndex = 29;
@@ -267,7 +267,7 @@ namespace PostGenerator
             // 
             // generatedPostToClipboard
             // 
-            this.generatedPostToClipboard.Location = new System.Drawing.Point(584, 876);
+            this.generatedPostToClipboard.Location = new System.Drawing.Point(584, 879);
             this.generatedPostToClipboard.Name = "generatedPostToClipboard";
             this.generatedPostToClipboard.Size = new System.Drawing.Size(200, 35);
             this.generatedPostToClipboard.TabIndex = 30;
@@ -277,7 +277,7 @@ namespace PostGenerator
             // 
             // ImgurLinkToClipboard
             // 
-            this.ImgurLinkToClipboard.Location = new System.Drawing.Point(584, 835);
+            this.ImgurLinkToClipboard.Location = new System.Drawing.Point(584, 838);
             this.ImgurLinkToClipboard.Name = "ImgurLinkToClipboard";
             this.ImgurLinkToClipboard.Size = new System.Drawing.Size(200, 35);
             this.ImgurLinkToClipboard.TabIndex = 31;
@@ -287,7 +287,7 @@ namespace PostGenerator
             // 
             // TitleToClipboard
             // 
-            this.TitleToClipboard.Location = new System.Drawing.Point(584, 794);
+            this.TitleToClipboard.Location = new System.Drawing.Point(584, 797);
             this.TitleToClipboard.Name = "TitleToClipboard";
             this.TitleToClipboard.Size = new System.Drawing.Size(200, 35);
             this.TitleToClipboard.TabIndex = 32;
@@ -297,7 +297,7 @@ namespace PostGenerator
             // 
             // nextNZBwithnewNFO
             // 
-            this.nextNZBwithnewNFO.Location = new System.Drawing.Point(687, 917);
+            this.nextNZBwithnewNFO.Location = new System.Drawing.Point(687, 920);
             this.nextNZBwithnewNFO.Name = "nextNZBwithnewNFO";
             this.nextNZBwithnewNFO.Size = new System.Drawing.Size(97, 35);
             this.nextNZBwithnewNFO.TabIndex = 33;

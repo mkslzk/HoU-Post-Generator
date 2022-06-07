@@ -23,7 +23,6 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium;
 using Application = System.Windows.Forms.Application;
 using MessageBox = System.Windows.MessageBox;
-using AutoUpdaterDotNET;
 
 namespace PostGenerator
 {
@@ -37,8 +36,6 @@ namespace PostGenerator
         private const string PT4 = "[phide=NFO]\n";
         private const string PT5 = "[/phide]\n[hide][color=#3366ff]\n\n[color=#ff3333]Passwort: [color=#ff3333]Steht in der geschweiften Klammer oder ist in der NZB enthalten.\n\n[/color][/color][/color][/hide][/align]";
 
-
-        public const string UpdateURL = "https://github.com/mkslzk/HoU-Post-Generator/blob/master/source/Update.xml";
         protected DataTableGeneration dataTableGeneration;
 
         public string dirName = string.Empty;
@@ -51,7 +48,6 @@ namespace PostGenerator
 
         public SteamAppId()
         {
-            AutoUpdater.Start(UpdateURL);
             dataTableGeneration = new DataTableGeneration();
             try
             {
@@ -87,7 +83,7 @@ namespace PostGenerator
         private void SteamAppId_Load(object sender, EventArgs e)
         {
             dataGridView1.DataSource = dataTableGeneration.DataTableToGenerate;
-            dataGridView1.Columns[0].Width = 300; //Column width for Name
+            dataGridView1.Columns[0].Width = 275; //Column width for Name
             dataGridView1.Columns[1].Width = 75; //Column width for appid
 
         }
@@ -342,6 +338,7 @@ namespace PostGenerator
                 generatedPost.Text = "";
             }
         }
+
         public Game GetGameData(int GameId)
         {
             var url = " https://store.steampowered.com/api/appdetails/?appids=" + GameId.ToString() + "&l=german";
