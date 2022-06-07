@@ -58,6 +58,8 @@ namespace PostGenerator
             this.ImgurLinkToClipboard = new System.Windows.Forms.Button();
             this.TitleToClipboard = new System.Windows.Forms.Button();
             this.nextNZBwithnewNFO = new System.Windows.Forms.Button();
+            this.pictureSizeSelection = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gameHeaderPicture)).BeginInit();
             this.SuspendLayout();
@@ -66,7 +68,7 @@ namespace PostGenerator
             // 
             this.searchTextBox.Location = new System.Drawing.Point(378, 23);
             this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(436, 20);
+            this.searchTextBox.Size = new System.Drawing.Size(406, 20);
             this.searchTextBox.TabIndex = 1;
             // 
             // dataGridView1
@@ -78,7 +80,7 @@ namespace PostGenerator
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(440, 373);
+            this.dataGridView1.Size = new System.Drawing.Size(410, 373);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -86,7 +88,7 @@ namespace PostGenerator
             // 
             this.btnSearch.Location = new System.Drawing.Point(378, 49);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(436, 21);
+            this.btnSearch.Size = new System.Drawing.Size(406, 21);
             this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Durchsuche SteamDB";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -124,16 +126,16 @@ namespace PostGenerator
             // generatedPost
             // 
             this.generatedPost.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.generatedPost.Location = new System.Drawing.Point(823, 675);
+            this.generatedPost.Location = new System.Drawing.Point(794, 754);
             this.generatedPost.Name = "generatedPost";
-            this.generatedPost.Size = new System.Drawing.Size(421, 207);
+            this.generatedPost.Size = new System.Drawing.Size(450, 200);
             this.generatedPost.TabIndex = 8;
             this.generatedPost.Text = "";
             // 
             // generatedPostLabel
             // 
             this.generatedPostLabel.AutoSize = true;
-            this.generatedPostLabel.Location = new System.Drawing.Point(820, 659);
+            this.generatedPostLabel.Location = new System.Drawing.Point(791, 738);
             this.generatedPostLabel.Name = "generatedPostLabel";
             this.generatedPostLabel.Size = new System.Drawing.Size(69, 13);
             this.generatedPostLabel.TabIndex = 9;
@@ -142,16 +144,16 @@ namespace PostGenerator
             // NFOText
             // 
             this.NFOText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NFOText.Location = new System.Drawing.Point(823, 484);
+            this.NFOText.Location = new System.Drawing.Point(794, 531);
             this.NFOText.Name = "NFOText";
-            this.NFOText.Size = new System.Drawing.Size(421, 172);
+            this.NFOText.Size = new System.Drawing.Size(450, 200);
             this.NFOText.TabIndex = 10;
             this.NFOText.Text = "";
             // 
             // nfoLabel
             // 
             this.nfoLabel.AutoSize = true;
-            this.nfoLabel.Location = new System.Drawing.Point(820, 468);
+            this.nfoLabel.Location = new System.Drawing.Point(791, 515);
             this.nfoLabel.Name = "nfoLabel";
             this.nfoLabel.Size = new System.Drawing.Size(32, 13);
             this.nfoLabel.TabIndex = 11;
@@ -160,16 +162,16 @@ namespace PostGenerator
             // steamGameDescription
             // 
             this.steamGameDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.steamGameDescription.Location = new System.Drawing.Point(823, 286);
+            this.steamGameDescription.Location = new System.Drawing.Point(794, 312);
             this.steamGameDescription.Name = "steamGameDescription";
-            this.steamGameDescription.Size = new System.Drawing.Size(421, 176);
+            this.steamGameDescription.Size = new System.Drawing.Size(450, 200);
             this.steamGameDescription.TabIndex = 12;
             this.steamGameDescription.Text = "";
             // 
             // gameDescriptionLabel
             // 
             this.gameDescriptionLabel.AutoSize = true;
-            this.gameDescriptionLabel.Location = new System.Drawing.Point(820, 270);
+            this.gameDescriptionLabel.Location = new System.Drawing.Point(791, 296);
             this.gameDescriptionLabel.Name = "gameDescriptionLabel";
             this.gameDescriptionLabel.Size = new System.Drawing.Size(75, 13);
             this.gameDescriptionLabel.TabIndex = 13;
@@ -178,7 +180,7 @@ namespace PostGenerator
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(820, 191);
+            this.label1.Location = new System.Drawing.Point(791, 214);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 18;
@@ -186,9 +188,9 @@ namespace PostGenerator
             // 
             // nextNZB
             // 
-            this.nextNZB.Location = new System.Drawing.Point(188, 12);
+            this.nextNZB.Location = new System.Drawing.Point(584, 917);
             this.nextNZB.Name = "nextNZB";
-            this.nextNZB.Size = new System.Drawing.Size(90, 30);
+            this.nextNZB.Size = new System.Drawing.Size(97, 35);
             this.nextNZB.TabIndex = 20;
             this.nextNZB.Text = "Clear All";
             this.nextNZB.UseVisualStyleBackColor = true;
@@ -206,7 +208,7 @@ namespace PostGenerator
             // 
             // gameHeaderPicture
             // 
-            this.gameHeaderPicture.Location = new System.Drawing.Point(837, 6);
+            this.gameHeaderPicture.Location = new System.Drawing.Point(823, 6);
             this.gameHeaderPicture.Name = "gameHeaderPicture";
             this.gameHeaderPicture.Size = new System.Drawing.Size(400, 184);
             this.gameHeaderPicture.TabIndex = 22;
@@ -215,7 +217,7 @@ namespace PostGenerator
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(820, 231);
+            this.label2.Location = new System.Drawing.Point(791, 254);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 13);
             this.label2.TabIndex = 24;
@@ -223,16 +225,16 @@ namespace PostGenerator
             // 
             // imgurLink
             // 
-            this.imgurLink.Location = new System.Drawing.Point(823, 247);
+            this.imgurLink.Location = new System.Drawing.Point(794, 270);
             this.imgurLink.Name = "imgurLink";
-            this.imgurLink.Size = new System.Drawing.Size(421, 20);
+            this.imgurLink.Size = new System.Drawing.Size(231, 20);
             this.imgurLink.TabIndex = 25;
             // 
             // gameTitle
             // 
-            this.gameTitle.Location = new System.Drawing.Point(823, 207);
+            this.gameTitle.Location = new System.Drawing.Point(794, 230);
             this.gameTitle.Name = "gameTitle";
-            this.gameTitle.Size = new System.Drawing.Size(421, 20);
+            this.gameTitle.Size = new System.Drawing.Size(450, 20);
             this.gameTitle.TabIndex = 26;
             // 
             // NewNZBs
@@ -255,7 +257,7 @@ namespace PostGenerator
             // 
             // generatePost
             // 
-            this.generatePost.Location = new System.Drawing.Point(614, 484);
+            this.generatePost.Location = new System.Drawing.Point(584, 754);
             this.generatePost.Name = "generatePost";
             this.generatePost.Size = new System.Drawing.Size(200, 35);
             this.generatePost.TabIndex = 29;
@@ -265,7 +267,7 @@ namespace PostGenerator
             // 
             // generatedPostToClipboard
             // 
-            this.generatedPostToClipboard.Location = new System.Drawing.Point(614, 606);
+            this.generatedPostToClipboard.Location = new System.Drawing.Point(584, 876);
             this.generatedPostToClipboard.Name = "generatedPostToClipboard";
             this.generatedPostToClipboard.Size = new System.Drawing.Size(200, 35);
             this.generatedPostToClipboard.TabIndex = 30;
@@ -275,7 +277,7 @@ namespace PostGenerator
             // 
             // ImgurLinkToClipboard
             // 
-            this.ImgurLinkToClipboard.Location = new System.Drawing.Point(614, 565);
+            this.ImgurLinkToClipboard.Location = new System.Drawing.Point(584, 835);
             this.ImgurLinkToClipboard.Name = "ImgurLinkToClipboard";
             this.ImgurLinkToClipboard.Size = new System.Drawing.Size(200, 35);
             this.ImgurLinkToClipboard.TabIndex = 31;
@@ -285,7 +287,7 @@ namespace PostGenerator
             // 
             // TitleToClipboard
             // 
-            this.TitleToClipboard.Location = new System.Drawing.Point(614, 524);
+            this.TitleToClipboard.Location = new System.Drawing.Point(584, 794);
             this.TitleToClipboard.Name = "TitleToClipboard";
             this.TitleToClipboard.Size = new System.Drawing.Size(200, 35);
             this.TitleToClipboard.TabIndex = 32;
@@ -295,13 +297,32 @@ namespace PostGenerator
             // 
             // nextNZBwithnewNFO
             // 
-            this.nextNZBwithnewNFO.Location = new System.Drawing.Point(284, 12);
+            this.nextNZBwithnewNFO.Location = new System.Drawing.Point(687, 917);
             this.nextNZBwithnewNFO.Name = "nextNZBwithnewNFO";
-            this.nextNZBwithnewNFO.Size = new System.Drawing.Size(90, 30);
+            this.nextNZBwithnewNFO.Size = new System.Drawing.Size(97, 35);
             this.nextNZBwithnewNFO.TabIndex = 33;
             this.nextNZBwithnewNFO.Text = "Clear Titel/NFO";
             this.nextNZBwithnewNFO.UseVisualStyleBackColor = true;
             this.nextNZBwithnewNFO.Click += new System.EventHandler(this.nextNZBwithnewNFO_Click);
+            // 
+            // pictureSizeSelection
+            // 
+            this.pictureSizeSelection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.pictureSizeSelection.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.pictureSizeSelection.FormattingEnabled = true;
+            this.pictureSizeSelection.Location = new System.Drawing.Point(1031, 269);
+            this.pictureSizeSelection.Name = "pictureSizeSelection";
+            this.pictureSizeSelection.Size = new System.Drawing.Size(213, 21);
+            this.pictureSizeSelection.TabIndex = 34;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(1030, 254);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 13);
+            this.label3.TabIndex = 35;
+            this.label3.Text = "Bildgröße:";
             // 
             // SteamAppId
             // 
@@ -310,7 +331,9 @@ namespace PostGenerator
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Gray;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1251, 884);
+            this.ClientSize = new System.Drawing.Size(1251, 996);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.pictureSizeSelection);
             this.Controls.Add(this.nextNZBwithnewNFO);
             this.Controls.Add(this.TitleToClipboard);
             this.Controls.Add(this.ImgurLinkToClipboard);
@@ -376,6 +399,8 @@ namespace PostGenerator
         private System.Windows.Forms.Button ImgurLinkToClipboard;
         private System.Windows.Forms.Button TitleToClipboard;
         private System.Windows.Forms.Button nextNZBwithnewNFO;
+        private System.Windows.Forms.ComboBox pictureSizeSelection;
+        private System.Windows.Forms.Label label3;
     }
 }
 

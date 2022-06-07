@@ -23,17 +23,22 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium;
 using Application = System.Windows.Forms.Application;
 using MessageBox = System.Windows.MessageBox;
+using AutoUpdaterDotNET;
 
 namespace PostGenerator
 {
     public partial class SteamAppId : Form
     {
         private const string PT1 = "[align=center][size=x-large][color=#00FF00][font=Times New Roman][b]";
-        private const string PT2 = "[/font][/color][/b][/size]\n\n[img=600x300]";
+        private const string PT2 = "[/font][/color][/b][/size]\n\n";
+        private const string ImgurSizeGame = "[img=600x300]";
+        private const string ImgurSizeProgram = "[img]";
         private const string PT3 = "[/img]\n\n[size=xx-large][color=#00FF00][font=Algerian][b]Beschreibung:[/b][/font][/color][/size]\n\n";
         private const string PT4 = "[phide=NFO]\n";
         private const string PT5 = "[/phide]\n[hide][color=#3366ff]\n\n[color=#ff3333]Passwort: [color=#ff3333]Steht in der geschweiften Klammer oder ist in der NZB enthalten.\n\n[/color][/color][/color][/hide][/align]";
 
+
+        public const string UpdateURL = "https://github.com/mkslzk/HoU-Post-Generator/blob/master/source/Update.xml";
         protected DataTableGeneration dataTableGeneration;
 
         public string dirName = string.Empty;
@@ -46,23 +51,37 @@ namespace PostGenerator
 
         public SteamAppId()
         {
+            AutoUpdater.Start(UpdateURL);
             dataTableGeneration = new DataTableGeneration();
             try
             {
                 Task.Run(async () => await dataTableGeneration.GetDataTableAsync(dataTableGeneration)).Wait();
+                
+                
                 InitializeComponent();
+                pictureSizeSelection.Items.Insert(0, "600x300 (Spiele)");
+                pictureSizeSelection.Items.Insert(1, "Originalgröße (Progs, Tutorials, etc.)");
+                pictureSizeSelection.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No connection to Steam Database possible.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                Application.Exit();
+                MessageBox.Show("No connection to Steam Database possible.\n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                InitializeComponent();
             }
         }
 
 
         private void generatePost_Click(object sender, EventArgs e)
         {
-            generatedPost.Text = PT1 + gameTitle.Text + PT2 + imgurLink.Text + PT3 + steamGameDescription.Text + PT4 + NFOText.Text + PT5;
+                if (pictureSizeSelection.SelectedItem.ToString() == "600x300 (Spiele)")
+                {
+                    generatedPost.Text = PT1 + gameTitle.Text + PT2 + ImgurSizeGame + imgurLink.Text + PT3 + steamGameDescription.Text + PT4 + NFOText.Text + PT5;
+                }
+                else if (pictureSizeSelection.SelectedItem.ToString() == "Originalgröße (Progs, Tutorials, etc.)")
+                {
+                    generatedPost.Text = PT1 + gameTitle.Text + PT2 + ImgurSizeProgram + imgurLink.Text + PT3 + steamGameDescription.Text + PT4 + NFOText.Text + PT5;
+                } 
         }
 
         private void SteamAppId_Load(object sender, EventArgs e)
@@ -259,7 +278,7 @@ namespace PostGenerator
                 }
                 else
                 {
-                    MessageBox.Show("No Game description found. Don´t choose any packs.\n Just the normal Release or DLC", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Keine Beschreibung gefunden.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
