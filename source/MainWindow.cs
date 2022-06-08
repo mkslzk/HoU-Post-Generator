@@ -100,7 +100,7 @@ namespace PostGenerator
         private void importNZB_Click(object sender, EventArgs e)
         {
             int TotalNZB = ImportNZB();
-            System.Windows.MessageBox.Show("NZB imported.\nNumber of NZB´s: " + TotalNZB, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            //System.Windows.MessageBox.Show("NZB imported.\nNumber of NZB´s: " + TotalNZB, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         public int ImportNZB()
@@ -175,7 +175,7 @@ namespace PostGenerator
             {
                 if (error.Status == WebExceptionStatus.ProtocolError)
                 {
-                    MessageBox.Show("No Release on xRel found!\nPlease search manually for it.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Kein Release auf xRel gefunden\nscnlog.me Integration folgt in einem Update", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -218,7 +218,7 @@ namespace PostGenerator
             }
             else
             {
-                MessageBox.Show("All done");
+              
             }
         }
         private void nextNZB_Click(object sender, EventArgs e)
@@ -274,7 +274,7 @@ namespace PostGenerator
                 }
                 else
                 {
-                    MessageBox.Show("Keine Beschreibung gefunden.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Keine Beschreibung gefunden.\nSpiel besitzt keine Shop Seite auf Steam", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
