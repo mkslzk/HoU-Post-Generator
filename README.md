@@ -1,3 +1,4 @@
 # Posting Generator with Webscraping for Steam and NFO searching
 
-W.I.P Project
+Newest Version can be installed from here: http://clickonceupdateserver.mkslzk.com/index.html
+Application checks for updates before each start.
