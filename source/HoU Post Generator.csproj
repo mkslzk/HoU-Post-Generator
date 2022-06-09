@@ -27,11 +27,13 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://clickonceupdateserver.mkslzk.com/</InstallUrl>
     <UpdateUrl>http://clickonceupdateserver.mkslzk.com/</UpdateUrl>
+    <SupportUrl>https://github.com/mkslzk/HoU-Post-Generator/issues</SupportUrl>
+    <ErrorReportUrl>https://github.com/mkslzk/HoU-Post-Generator/issues</ErrorReportUrl>
     <ProductName>HoU Post Generator</ProductName>
-    <PublisherName>Strife</PublisherName>
+    <PublisherName>Strife for HoU</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
-    <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>11</ApplicationRevision>
+    <WebPage>index.html</WebPage>
+    <ApplicationRevision>15</ApplicationRevision>
     <ApplicationVersion>0.1.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -74,6 +76,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>HoU Post Generator_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\bearbeiten.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AngleSharp, Version=0.17.1.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
@@ -203,8 +208,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <Content Include="Resources\bearbeiten.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Web.WebView2.1.0.1210.39\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.1210.39\build\Microsoft.Web.WebView2.targets')" />

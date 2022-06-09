@@ -23,6 +23,7 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium;
 using Application = System.Windows.Forms.Application;
 using MessageBox = System.Windows.MessageBox;
+using System.Diagnostics;
 
 namespace PostGenerator
 {
@@ -248,28 +249,53 @@ namespace PostGenerator
         {
             if (e.RowIndex >= 0)
             {
-                string appIDvalueAsString = ""; //Leere Zeichenkette initialisieren um diese als Grundlage für weitere Schritte zu verwenden
-                appIDvalueAsString = dataGridView1.Rows[e.RowIndex].Cells["AppID"].Value.ToString(); //Der Wert der ausgewählten Zelle wird in die Variable geschrieben
-                int appIDValueAsINT = 0; //Integer Wert initialiseren
-                Int32.TryParse(appIDvalueAsString, out appIDValueAsINT); //Konvertierung von Zeichenkette zu Integer Wert
+                string appIDvalueAsString = "";
+                appIDvalueAsString = dataGridView1.Rows[e.RowIndex].Cells["AppID"].Value.ToString(); 
+                int appIDValueAsINT = 0;
+                Int32.TryParse(appIDvalueAsString, out appIDValueAsINT); 
 
-                int GameId = appIDValueAsINT; //Übergabe an weitere Variable
-                Game game = GetGameData(GameId); //Aufruf der Methode mit passender AppID
-                if (game.success) //Wenn Abfrage erfolgreich
+                int GameId = appIDValueAsINT; 
+                Game game = GetGameData(GameId); 
+                if (game.success) 
                 {
-                    Data data = game.data; //Erhält alle allgemeinen Informationen der Steam Shop Seite für die korrespondierende AppID
-                    HtmlDocument htmlDoc = new HtmlDocument(); //Erstelle neues temporäres HTML Dokument
-                    htmlDoc.LoadHtml(data.detailed_description); //Lade Inhalt aus Zeile 213 in das Dokument
-                    string result = htmlDoc.DocumentNode.InnerText; //Extrahiere die Beschreibung ohne ignoriere HTML Tags
-                    steamGameDescription.Text = result; //Ergebnis wird in der Oberfläche ausgegeben
-                    gameHeaderPicture.SizeMode = PictureBoxSizeMode.StretchImage; //Funktion um Bild passend darzustellen
-                    var downloadHeaderImage = WebRequest.Create(data.header_image); //Anfrage um Bild herunterzuladen
-                    using (var response = downloadHeaderImage.GetResponse()) //Erhalte oben gestellte Anfrage
-                    using (var stream = response.GetResponseStream()) //Schreibe Inhalt der Anfrage in eine Variable
+                    Data data = game.data;
+                    HtmlDocument htmlDoc = new HtmlDocument();
+                    htmlDoc.LoadHtml(data.detailed_description); 
+                    string result = htmlDoc.DocumentNode.InnerText; 
+                    steamGameDescription.Text = result; 
+                    gameHeaderPicture.SizeMode = PictureBoxSizeMode.StretchImage; 
+                    var downloadHeaderImage = WebRequest.Create(data.header_image); 
+                    using (var response = downloadHeaderImage.GetResponse()) 
+                    using (var stream = response.GetResponseStream())
                     {
-                        gameHeaderPicture.Image = Bitmap.FromStream(stream); //Inhalt der Variable wird als Bild interpretiert und in der vorher definierten Bildbox ausgegeben
+                        gameHeaderPicture.Image = Bitmap.FromStream(stream);
                     }
                     string steamHeaderURL = data.header_image.ToString();
+
+                    string steamGenres = JsonConvert.SerializeObject(data.genres);
+                    StringBuilder sb = new StringBuilder(steamGenres);
+                    sb.Replace("[", "");
+                    sb.Replace("{", "");
+                    sb.Replace("]", "");
+                    sb.Replace("}", "");
+                    sb.Replace("id", "");
+                    sb.Replace(":", "");
+                    sb.Replace("description", "");
+                    sb.Replace(",", "");
+                    sb.Replace("\"", "");
+                    sb.Replace("0", " ");
+                    sb.Replace("1", " ");
+                    sb.Replace("2", " ");
+                    sb.Replace("3", " ");
+                    sb.Replace("4", " ");
+                    sb.Replace("5", " ");
+                    sb.Replace("6", " ");
+                    sb.Replace("7", " ");
+                    sb.Replace("8", " ");
+                    sb.Replace("9", " ");
+
+                    steamGameGenres.Text = sb.ToString();
+
                     uploadToImgur(steamHeaderURL);
                 }
                 else
@@ -278,6 +304,7 @@ namespace PostGenerator
                 }
             }
         }
+
         public void uploadToImgur(string steamHeaderURL)
         {
             var client = new RestClient("https://api.imgur.com/3/image");
