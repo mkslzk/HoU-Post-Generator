@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Chrome;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -15,6 +15,7 @@ using System.Windows;
 using System.Windows.Forms;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
+using WebDriverManager.Helpers;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 using MessageBox = System.Windows.MessageBox;
 
@@ -141,18 +142,18 @@ namespace PostGenerator
                 String steamTitle = htmlbody1.InnerText;
                 searchTextBox.Text = steamTitle;
 
+                new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
+                
+                var browserConfig = new ChromeOptions();
+                browserConfig.AddArguments("--window-size=1920,1080");
+                browserConfig.AddArguments("--start-maximized");
+                browserConfig.AddArguments("--log-level=OFF");
+                browserConfig.AddArguments("headless");
 
-                new DriverManager().SetUpDriver(new EdgeConfig());
-                var edgeconf = new EdgeOptions();
-                edgeconf.AddArguments("--window-size=1920,1080");
-                edgeconf.AddArguments("--start-maximized");
-                edgeconf.AddArguments("--log-level=OFF");
-                edgeconf.AddArguments("headless");
-
-                var driverService = EdgeDriverService.CreateDefaultService();
+                var driverService = ChromeDriverService.CreateDefaultService();
                 driverService.HideCommandPromptWindow = true;
 
-                var webpage = new EdgeDriver(driverService, edgeconf)
+                var webpage = new ChromeDriver(driverService, browserConfig)
                 {
 
                     //Launch the xRel Website and get NFO
@@ -164,6 +165,7 @@ namespace PostGenerator
                 String finalNFO = webpage.FindElement(By.XPath(@"//pre")).GetAttribute("innerHTML");
                 NFOText.Text = finalNFO;
                 webpage.Quit();
+                
             }
             catch (WebException error)
             {
@@ -234,6 +236,7 @@ namespace PostGenerator
                 NFOText.Text = "";
                 generatedPost.Text = "";
                 gameHeaderPicture.Image = null;
+                steamGameGenres.Text = "";
             }
         }
 
@@ -500,6 +503,11 @@ namespace PostGenerator
             public int id { get; set; }
             public string path_thumbnail { get; set; }
             public string path_full { get; set; }
+        }
+
+        private void installDriver_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

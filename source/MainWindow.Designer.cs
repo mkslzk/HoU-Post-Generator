@@ -60,6 +60,7 @@ namespace PostGenerator
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.steamGameGenres = new System.Windows.Forms.TextBox();
+            this.installDriver = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gameHeaderPicture)).BeginInit();
             this.SuspendLayout();
@@ -336,6 +337,16 @@ namespace PostGenerator
             this.steamGameGenres.Size = new System.Drawing.Size(450, 20);
             this.steamGameGenres.TabIndex = 37;
             // 
+            // installDriver
+            // 
+            this.installDriver.Location = new System.Drawing.Point(281, 13);
+            this.installDriver.Name = "installDriver";
+            this.installDriver.Size = new System.Drawing.Size(90, 30);
+            this.installDriver.TabIndex = 38;
+            this.installDriver.Text = "Install Driver";
+            this.installDriver.UseVisualStyleBackColor = true;
+            this.installDriver.Click += new System.EventHandler(this.installDriver_Click);
+            // 
             // SteamAppId
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -344,6 +355,7 @@ namespace PostGenerator
             this.BackColor = System.Drawing.Color.Gray;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1251, 996);
+            this.Controls.Add(this.installDriver);
             this.Controls.Add(this.steamGameGenres);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -416,6 +428,7 @@ namespace PostGenerator
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox steamGameGenres;
+        private System.Windows.Forms.Button installDriver;
     }
 }
 
