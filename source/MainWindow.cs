@@ -1,29 +1,22 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Edge;
 using RestSharp;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using HtmlAgilityPack;
-using Ookii.Dialogs.WinForms;
 using System.Windows;
-using HtmlDocument = HtmlAgilityPack.HtmlDocument;
+using System.Windows.Forms;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
-using OpenQA.Selenium.Edge;
-using OpenQA.Selenium;
-using Application = System.Windows.Forms.Application;
+using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 using MessageBox = System.Windows.MessageBox;
-using System.Diagnostics;
 
 namespace PostGenerator
 {
@@ -53,8 +46,8 @@ namespace PostGenerator
             try
             {
                 Task.Run(async () => await dataTableGeneration.GetDataTableAsync(dataTableGeneration)).Wait();
-                
-                
+
+
                 InitializeComponent();
                 pictureSizeSelection.Items.Insert(0, "600x300 (Spiele)");
                 pictureSizeSelection.Items.Insert(1, "Originalgröße (Progs, Tutorials, etc.)");
@@ -71,14 +64,14 @@ namespace PostGenerator
 
         private void generatePost_Click(object sender, EventArgs e)
         {
-                if (pictureSizeSelection.SelectedItem.ToString() == "600x300 (Spiele)")
-                {
-                    generatedPost.Text = PT1 + gameTitle.Text + PT2 + ImgurSizeGame + imgurLink.Text + PT3 + steamGameDescription.Text + PT4 + NFOText.Text + PT5;
-                }
-                else if (pictureSizeSelection.SelectedItem.ToString() == "Originalgröße (Progs, Tutorials, etc.)")
-                {
-                    generatedPost.Text = PT1 + gameTitle.Text + PT2 + ImgurSizeProgram + imgurLink.Text + PT3 + steamGameDescription.Text + PT4 + NFOText.Text + PT5;
-                } 
+            if (pictureSizeSelection.SelectedItem.ToString() == "600x300 (Spiele)")
+            {
+                generatedPost.Text = PT1 + gameTitle.Text + PT2 + ImgurSizeGame + imgurLink.Text + PT3 + steamGameDescription.Text + PT4 + NFOText.Text + PT5;
+            }
+            else if (pictureSizeSelection.SelectedItem.ToString() == "Originalgröße (Progs, Tutorials, etc.)")
+            {
+                generatedPost.Text = PT1 + gameTitle.Text + PT2 + ImgurSizeProgram + imgurLink.Text + PT3 + steamGameDescription.Text + PT4 + NFOText.Text + PT5;
+            }
         }
 
         private void SteamAppId_Load(object sender, EventArgs e)
@@ -219,7 +212,7 @@ namespace PostGenerator
             }
             else
             {
-              
+
             }
         }
         private void nextNZB_Click(object sender, EventArgs e)
@@ -250,28 +243,27 @@ namespace PostGenerator
             if (e.RowIndex >= 0)
             {
                 string appIDvalueAsString = "";
-                appIDvalueAsString = dataGridView1.Rows[e.RowIndex].Cells["AppID"].Value.ToString(); 
+                appIDvalueAsString = dataGridView1.Rows[e.RowIndex].Cells["AppID"].Value.ToString();
                 int appIDValueAsINT = 0;
-                Int32.TryParse(appIDvalueAsString, out appIDValueAsINT); 
+                Int32.TryParse(appIDvalueAsString, out appIDValueAsINT);
 
-                int GameId = appIDValueAsINT; 
-                Game game = GetGameData(GameId); 
-                if (game.success) 
+                int GameId = appIDValueAsINT;
+                Game game = GetGameData(GameId);
+                if (game.success)
                 {
                     Data data = game.data;
                     HtmlDocument htmlDoc = new HtmlDocument();
-                    htmlDoc.LoadHtml(data.detailed_description); 
-                    string result = htmlDoc.DocumentNode.InnerText; 
-                    steamGameDescription.Text = result; 
-                    gameHeaderPicture.SizeMode = PictureBoxSizeMode.StretchImage; 
-                    var downloadHeaderImage = WebRequest.Create(data.header_image); 
-                    using (var response = downloadHeaderImage.GetResponse()) 
+                    htmlDoc.LoadHtml(data.detailed_description);
+                    string result = htmlDoc.DocumentNode.InnerText;
+                    steamGameDescription.Text = result;
+                    gameHeaderPicture.SizeMode = PictureBoxSizeMode.StretchImage;
+                    var downloadHeaderImage = WebRequest.Create(data.header_image);
+                    using (var response = downloadHeaderImage.GetResponse())
                     using (var stream = response.GetResponseStream())
                     {
                         gameHeaderPicture.Image = Bitmap.FromStream(stream);
                     }
                     string steamHeaderURL = data.header_image.ToString();
-
                     string steamGenres = JsonConvert.SerializeObject(data.genres);
                     StringBuilder sb = new StringBuilder(steamGenres);
                     sb.Replace("[", "");
@@ -293,9 +285,7 @@ namespace PostGenerator
                     sb.Replace("7", " ");
                     sb.Replace("8", " ");
                     sb.Replace("9", " ");
-
                     steamGameGenres.Text = sb.ToString();
-
                     uploadToImgur(steamHeaderURL);
                 }
                 else

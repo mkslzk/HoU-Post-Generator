@@ -1,11 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace PostGenerator
@@ -16,7 +12,8 @@ namespace PostGenerator
 
         public DataTableGeneration() { }
 
-        public async Task<DataTable> GetDataTableAsync(DataTableGeneration dataTableGeneration) {
+        public async Task<DataTable> GetDataTableAsync(DataTableGeneration dataTableGeneration)
+        {
             HttpClient httpClient = new HttpClient();
             string content = await httpClient.GetStringAsync("https://api.steampowered.com/ISteamApps/GetAppList/v2/");
             SteamGames steamGames = JsonConvert.DeserializeObject<SteamGames>(content);
@@ -35,7 +32,8 @@ namespace PostGenerator
         }
 
         #region Get and Set
-        public DataTable DataTableToGenerate{
+        public DataTable DataTableToGenerate
+        {
             get { return dataTable; }   // get method
             set { dataTable = value; }  // set method
         }

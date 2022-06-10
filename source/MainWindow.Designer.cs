@@ -376,7 +376,7 @@ namespace PostGenerator
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SteamAppId";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "House of Usenet Games Generator v.0.1.0 (alpha)";
+            this.Text = "House of Usenet Games Generator";
             this.Load += new System.EventHandler(this.SteamAppId_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gameHeaderPicture)).EndInit();
