@@ -505,9 +505,5 @@ namespace PostGenerator
             public string path_full { get; set; }
         }
 
-        private void installDriver_Click(object sender, EventArgs e)
-        {
-            
-        }
     }
 }
