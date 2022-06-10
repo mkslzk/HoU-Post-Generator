@@ -5,6 +5,7 @@ using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -36,7 +37,6 @@ namespace PostGenerator
         public string dirName = string.Empty;
         public string chosenNZB = string.Empty;
 
-        private const string CLIENT_ID = "ae579a2e87cd3ad";
         public const string IMGUR_IMAGE_LINK_START = "link\":\"";
         public const string IMGUR_IMAGE_LINK_END = "\"},";
 
@@ -89,12 +89,15 @@ namespace PostGenerator
             {
                 ((DataTable)dataGridView1.DataSource).DefaultView.RowFilter = string.Format("Name like '%{0}%'", searchTextBox.Text.Replace("'", "''"));
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
         }
 
         private void importNZB_Click(object sender, EventArgs e)
         {
-            int TotalNZB = ImportNZB();
+            ImportNZB();
             //System.Windows.MessageBox.Show("NZB imported.\nNumber of NZB´s: " + TotalNZB, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -245,10 +248,9 @@ namespace PostGenerator
         {
             if (e.RowIndex >= 0)
             {
-                string appIDvalueAsString = "";
+                string appIDvalueAsString;
                 appIDvalueAsString = dataGridView1.Rows[e.RowIndex].Cells["AppID"].Value.ToString();
-                int appIDValueAsINT = 0;
-                Int32.TryParse(appIDvalueAsString, out appIDValueAsINT);
+                Int32.TryParse(appIDvalueAsString, out int appIDValueAsINT);
 
                 int GameId = appIDValueAsINT;
                 Game game = GetGameData(GameId);
